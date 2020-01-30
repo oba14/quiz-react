@@ -9,10 +9,7 @@ const Quiz = () => {
     console.log('this is dashboard');
     
     const [answerColor, setAnswerColor] = useState('');
-    const {questions, currentQuestion, currentAnswer, answers, showResults, error} = useSelector(state => state.questions)
-    
-    const question = questions[currentQuestion];
-    
+    const questions = useSelector(state => state.questions.questions)
     console.log('QUIZ QUESTIONS', questions);
     
     const dispatch = useDispatch()
@@ -30,40 +27,6 @@ const Quiz = () => {
     const fetchData = () => {
       dispatch(getQuestions())
     }
-
-    const renderError = () => {
-      if (!error) {
-          return;
-      }
-
-      return <div className="error">{error}</div>;
-    };
-
-    const renderResultMark = (question, answer) => {
-      if (question.correct_answer === answer.answer) {
-          return <span className="correct">Correct</span>;
-      }
-
-      return <span className="failed">Failed</span>;
-    };
-
-    const renderResultsData = () => {
-      return answers.map(answer => {
-          const question = questions.find(
-              question => question.id === answer.questionId
-          );
-
-          return (
-              <div key={question.id}>
-                  {question.question} - {renderResultMark(question, answer)}
-              </div>
-          );
-      });
-    };
-
-    const restart = () => {
-      dispatch({type: 'RESET_QUIZ'});
-    };
 
     const answerStatus = (e) => {
       if(e.target.value === questions.correct_answer){

@@ -9,10 +9,7 @@ const Quiz = () => {
     console.log('this is dashboard');
     
     const [answerColor, setAnswerColor] = useState('');
-    const {questions, currentQuestion, currentAnswer, answers, showResults, error} = useSelector(state => state.questions)
-    
-    const question = questions[currentQuestion];
-    
+    const questions = useSelector(state => state.questions.questions)
     console.log('QUIZ QUESTIONS', questions);
     
     const dispatch = useDispatch()
@@ -31,40 +28,6 @@ const Quiz = () => {
       dispatch(getQuestions())
     }
 
-    const renderError = () => {
-      if (!error) {
-          return;
-      }
-
-      return <div className="error">{error}</div>;
-    };
-
-    const renderResultMark = (question, answer) => {
-      if (question.correct_answer === answer.answer) {
-          return <span className="correct">Correct</span>;
-      }
-
-      return <span className="failed">Failed</span>;
-    };
-
-    const renderResultsData = () => {
-      return answers.map(answer => {
-          const question = questions.find(
-              question => question.id === answer.questionId
-          );
-
-          return (
-              <div key={question.id}>
-                  {question.question} - {renderResultMark(question, answer)}
-              </div>
-          );
-      });
-    };
-
-    const restart = () => {
-      dispatch({type: 'RESET_QUIZ'});
-    };
-
     const answerStatus = (e) => {
       if(e.target.value === questions.correct_answer){
         setAnswerColor('green')
@@ -75,26 +38,27 @@ const Quiz = () => {
   
       return (
         <>
-          <div  className="container">
-            {questions && questions.length > 0 && questions.map((question, index) =>
+            {questions && questions.results.length > 0 && questions.results.map((question, index) =>
        
-            <div key={index}>
-              
-                <h4> Question: {question.question}</h4>
-              
-                 
+          <div key={index} style={{overflow:'hidden', width:'604%' , display:'flex', flexDirection:'column', flexWrap:'wrap', justifyContent:'center', alignContent:'center'}}>
+            <div>
+              <h4> Question: {question.question}</h4>
                 
-                <label className="answer" onClick={answerStatus}>a:  {question.correct_answer} </label>
-            
-                <label className="answer" onClick={answerStatus}>b: {question.incorrect_answers[0]} </label>
-                    
-                <label  className="answer" onClick={answerStatus}>c: {question.incorrect_answers[1]} </label>
-        
-                <label className="answer" onClick={answerStatus}>d: {question.incorrect_answers[2]} </label>
-              </div>
-                    
+              <span >A</span>
+              <label onClick={answerStatus}> {question.correct_answer} </label>
+          
+              <span >B</span>
+              <label className="b" onClick={answerStatus}> {question.incorrect_answers[0]} </label>
+          
+          
+              <span >C</span>
+              <label onClick={answerStatus}> {question.incorrect_answers[1]} </label>
+      
+              <span >D</span>
+              <label onClick={answerStatus}> {question.incorrect_answers[2]} </label>
+            </div>        
+          </div>
             )}
-            </div>
             </>
           );
   }

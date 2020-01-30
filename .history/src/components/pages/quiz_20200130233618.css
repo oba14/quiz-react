@@ -17,6 +17,7 @@
     text-align: left;
     margin-top: 10px;
     position: relative;
+    font-size: 22px;
     cursor: pointer;
     transition: ease-in-out, width 0.35s ease-in-out;
 }

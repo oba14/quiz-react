@@ -13,10 +13,11 @@
 .answer {
     border: 1px solid #fff;
     padding: 5px 10px 5px 45px;
-    width: 50%;
+    width: 610px;
     text-align: left;
     margin-top: 10px;
     position: relative;
+    font-size: 22px;
     cursor: pointer;
     transition: ease-in-out, width 0.35s ease-in-out;
 }

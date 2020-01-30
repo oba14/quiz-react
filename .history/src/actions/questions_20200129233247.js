@@ -12,7 +12,7 @@ export const getQuestions = () => {
           .then(res => {
             dispatch({
                 type: 'GET_QUESTIONS',
-                payload: res.data.results,
+                payload: res.data,
             })
             }) 
           .catch(error => { 

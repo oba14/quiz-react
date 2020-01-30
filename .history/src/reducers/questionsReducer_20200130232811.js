@@ -1,11 +1,7 @@
 const initialState= {
     questions: [],
     isFetching: false,
-    error: null,
-    currentQuestion: 0,
-    currentAnswer: '',
-    answers: [],
-    showResults: false   
+    error: null
 };
 
 const questionsReducer = (state= initialState, action) => {
