@@ -1,0 +1,32 @@
+.Landing {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.image-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-gallery {
+    
+    flex-wrap: wrap; 
+    flex-flow: row wrap;   
+    justify-content: space-evenly;
+    align-content: space-around;
+
+}
+/* 
+.images-mongo {
+
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  
+} */

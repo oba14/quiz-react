@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import LandingPage from './components/pages/LandingPage'
+import Navbar from './components/layout/Navbar'
+import NotFound from './components/pages/NotFound'
+import Contact from './components/pages/Contact';
+import AboutUs from './components/pages/AboutUs';
+import Quiz from './components/pages/Quiz'
+import { ToastContainer } from 'react-toastify';
+
+
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+        <ToastContainer 
+        position="top-center"
+        autoClose={1300}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover/>  
+        <Navbar />
+        <Switch>
+            <Route exact path = '/' component = {LandingPage} />
+            <Route exact path = '/quiz' component = { Quiz }></Route>
+            <Route path = '/contact' component = {Contact} />
+            <Route path = '/aboutus' component = {AboutUs} />
+            <Route component= { NotFound }/>
+        </Switch>
+    </BrowserRouter>
+);
 }
 
 export default App;
