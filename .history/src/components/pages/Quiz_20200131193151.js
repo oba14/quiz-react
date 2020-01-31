@@ -18,22 +18,22 @@ const Quiz = () => {
     let question = {};
     
     
-    // console.log('QUIZ QUESTIONS', questions);
+    console.log('QUIZ QUESTIONS', questions);
     
   
 
-    // useEffect(() => {
+    useEffect(() => {
       
-    //   fetchData();
-    // }, [])
+      fetchData();
+    }, [])
 
     useEffect(() => {
       
     }, [questions])
    
-    // const fetchData = () => {
-    //   dispatch(getQuestions())
-    // }
+    const fetchData = () => {
+      dispatch(getQuestions())
+    }
 
     const renderError = () => {
       if (!error) {
@@ -44,10 +44,7 @@ const Quiz = () => {
     };
 
     const renderResultMark = (question, answer) => {
-      // console.log('RENDER RESULT QUESTION', question);
-      // console.log('RENDER RESULT Answer', answer);
-      
-      if (decodeURIComponent(question.correct_answer) === decodeURIComponent(answer.answer)) {
+      if (decodeURIComponent(question.correct_answer) ===decodeURIComponent(answer.answer)) {
           return <span className="correct">Correct</span>;
       }
 

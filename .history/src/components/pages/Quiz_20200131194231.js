@@ -22,18 +22,18 @@ const Quiz = () => {
     
   
 
-    // useEffect(() => {
+    useEffect(() => {
       
-    //   fetchData();
-    // }, [])
+      fetchData();
+    }, [])
 
     useEffect(() => {
       
     }, [questions])
    
-    // const fetchData = () => {
-    //   dispatch(getQuestions())
-    // }
+    const fetchData = () => {
+      dispatch(getQuestions())
+    }
 
     const renderError = () => {
       if (!error) {

@@ -9,7 +9,7 @@ import {GET_QUESTIONS,
     SET_SHOW_RESULTS
 } from './types'
 
-const url = "https://opentdb.com/api.php?"
+//const url = "https://opentdb.com/api.php?amount=10&category=11&difficulty=hard&type=multiple&encode=url3986"
 
 // Fetch ALL FORMS from mongodb and display item when component is rendered
 export const getQuestions = (data) => {
@@ -17,11 +17,9 @@ export const getQuestions = (data) => {
         dispatch({
             type: IS_FETCHING
         })
-        try{
-        await axios(`${url}amount=${data.noOfQuestions}&category=${data.selectedCategory}&difficulty=${data.selectedDifficulty}&type=multiple&encode=url3986`)
+        
+        await axios(`https://opentdb.com/api.php?amount=${data.noOfQuestions}&category=${data.selectedCategory}&difficulty=${data.selectedDifficulty}&type=multiple&encode=url3986`)
           .then(res => {
-              console.log('response', res);
-              
             dispatch({
                 type: GET_QUESTIONS,
                 payload: res.data.results,
@@ -34,12 +32,6 @@ export const getQuestions = (data) => {
                 payload: error.message
             })
         })
-        }catch (error){
-            dispatch({
-                type: ERROR_FETCHING,
-                payload: error.message
-            })
-        }
     }
 }
 

@@ -17,11 +17,9 @@ export const getQuestions = (data) => {
         dispatch({
             type: IS_FETCHING
         })
-        try{
+        
         await axios(`${url}amount=${data.noOfQuestions}&category=${data.selectedCategory}&difficulty=${data.selectedDifficulty}&type=multiple&encode=url3986`)
           .then(res => {
-              console.log('response', res);
-              
             dispatch({
                 type: GET_QUESTIONS,
                 payload: res.data.results,
@@ -34,12 +32,6 @@ export const getQuestions = (data) => {
                 payload: error.message
             })
         })
-        }catch (error){
-            dispatch({
-                type: ERROR_FETCHING,
-                payload: error.message
-            })
-        }
     }
 }
 

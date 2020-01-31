@@ -5,7 +5,6 @@ import Navbar from './components/layout/Navbar'
 import NotFound from './components/pages/NotFound'
 import Contact from './components/pages/Contact';
 import AboutUs from './components/pages/AboutUs';
-import QuizForm from './components/pages/QuizForm';
 import Quiz from './components/pages/Quiz'
 import { ToastContainer } from 'react-toastify';
 
@@ -29,7 +28,6 @@ function App() {
         <Navbar />
         <Switch>
             <Route exact path = '/' component = {LandingPage} />
-            <Route exact path = '/quizform' component = {QuizForm} ></Route>
             <Route exact path = '/quiz' component = { Quiz }></Route>
             <Route path = '/contact' component = {Contact} />
             <Route path = '/aboutus' component = {AboutUs} />

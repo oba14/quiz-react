@@ -7,7 +7,7 @@ const LandingPage = () => {
         <div className="Landing">
             <h1>WELCOME </h1>
             <h3>Quiz App made with React and Redux</h3>
-            <button className='btn'><NavLink to= '/quizform'>Start the Quiz</NavLink> </ button>
+            <button className='btn'><NavLink to= '/quiz'>Start the Quiz</NavLink> </ button>
         </div>
     );
 }
