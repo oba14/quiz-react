@@ -1,7 +1,10 @@
 import React from 'react'
 
 const Contact = () => (
-    <h1>Contact Details</h1>
+    <div className="container">
+        <h1>Contact Details</h1>
+        <p>tech.startup.114@gmail.com</p>
+    </div>
 )
 
 export default Contact

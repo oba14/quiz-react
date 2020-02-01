@@ -40,6 +40,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     font-size: 23px;
     color: white;
     text-align: left;
@@ -51,6 +52,14 @@
 
 .results span.failed {
     color: #f27c7c;
+}
+
+.quiz-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    /* flex: 0 1 100px grow shrink basis(determines width) */
 }
 
 .error {

@@ -51,18 +51,19 @@ const Quiz = () => {
           return <span className="correct">Correct</span>;
       }
 
-      return <span className="failed">Failed</span>;
+      return <span className="failed">Wrong</span>;
     };
 
     const renderResultsData = () => {
-      return answers.map(answer => {
+      return answers.map((answer, index) => {
           const question = questions.find(
               question => decodeURIComponent(question.question) === answer.questionId
           );
-
+          //{decodeURIComponent(question.question)} - {renderResultMark(question, answer)}
           return (
               <div key={question.question}>
-                  {decodeURIComponent(question.question)} - {renderResultMark(question, answer)}
+                  
+                  {index + 1} - {renderResultMark(question, answer)}
               </div>
           );
       });

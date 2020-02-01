@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
       <>
         <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-          <div >
+          <div style={{display:'flex', flexFlow: 'row wrap'}}>
             <NavLink exact activeClassName="active"
               to="/"
            
@@ -27,7 +27,7 @@ const Navbar = () => {
               to="/aboutus"
               
               className="col s5 center black-text">
-              About Us
+              About
             </NavLink>
 
             <NavLink exact activeClassName="active"

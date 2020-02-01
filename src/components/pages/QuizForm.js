@@ -64,16 +64,17 @@ const QuizForm = (props) => {
             
                 <h3>Select quiz category and difficult level</h3>
                 <form  onSubmit={handleSubmit(onSubmit)} id= {'myForm'} name= {'myForm'} encType='multipart/form-data'>
-                    <label>1- Please select a category</label> <br></br>
-                    <select id={'categories'} name="category" ref={register({ required: true })}>
+                    <label>1- Select a category</label> <br></br>
+                    <select style={{width: '47%' }} id={'categories'} name="category" ref={register({ required: true })}>
                     </select> <br></br>
-                    <label>2- Please select a difficulty level</label> <br></br>
-                    <select name="difficulty" ref={register({ required: true })}>
+                    <label>2- Select a difficulty level</label> <br></br>
+                    <select style={{width: '47%' }} name="difficulty" ref={register({ required: true })}>
                         <option value='easy'>Easy</option>
                         <option value='medium'>Medium</option>
                         <option value='hard'>Hard</option>
                     </select><br></br>
-                    <input className='form-control' type="number" placeholder="NUmber of questions" name="noofquestions" ref={register({ required: true })} /><br />
+                    <label>3- Select number of questions.</label> <br></br>
+                    <input style={{width: '47%', margin: '0 auto'}} className='form-control' type="number"  placeholder="Number of questions" name="noofquestions" ref={register({ required: true })} /><br />
                     <button className='btn btn-primary' type="submit" > Submit </button>
                 </form>
             
