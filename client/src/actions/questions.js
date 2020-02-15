@@ -9,7 +9,7 @@ import { GET_QUESTIONS,
   SET_SHOW_RESULTS
 } from './types';
 
-const url = 'https://opentdb.com/api.php?';
+const url = 'http://localhost:5000/quiz';
 
 // Fetch ALL FORMS from mongodb and display item when component is rendered
 export const getQuestions = (data) => {
@@ -18,7 +18,16 @@ export const getQuestions = (data) => {
       type: IS_FETCHING
     });
     try{
-      await axios(`${url}amount=${data.noOfQuestions}&category=${data.selectedCategory}&difficulty=${data.selectedDifficulty}&type=multiple&encode=url3986`)
+      //await axios(`${url}amount=${data.noOfQuestions}&category=${data.selectedCategory}&difficulty=${data.selectedDifficulty}&type=multiple&encode=url3986`)
+      await axios({
+        method: 'post',
+        url: url,
+        data: {
+          noOfQuestions: data.noOfQuestions,
+          selectedCategory: data.selectedCategory,
+          selectedDifficulty: data.selectedDifficulty
+        }
+      })
         .then(res => {
           console.log('response', res);
               
