@@ -38,9 +38,15 @@ app.post("/quiz", (req, res) => {
       .then(data => {
         res.status(200).send(data);
       })
-      .catch(error => res.status(404).json({ error: error }));
+      .catch(error => {
+        res.status(404).end({ error: error });
+        //.end();
+      });
   } catch (error) {
-    res.status(404).json({ error: error });
+    res
+      .status(404)
+      .json({ error: error })
+      .end();
   }
 });
 
@@ -64,3 +70,5 @@ app.use("*", (req, res) => {
 app.listen(port, () => {
   console.log(`app is listening to port, ${port}`);
 });
+
+module.exports.app = app;
