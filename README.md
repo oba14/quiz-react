@@ -4,7 +4,8 @@
 Quiz app created using React with Redux.
   </h1>
 <p> 
-A Quiz App having a frontend in React and a backend with an express server. Quiz questions are generated from an opensource trivia database  [Opentdb](https://opentdb.com/) having around 4000 questions divided in 23 categories.  
+A Quiz App having a frontend in React and a backend with an express server. Quiz questions are generated from an opensource trivia database  (https://opentdb.com/) having around 4000 questions divided in 23 categories.
+React hooks are used that let us use state and other react features without having to write classes.  
 </p>
 
 ## Prerequirements
