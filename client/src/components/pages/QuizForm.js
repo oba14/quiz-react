@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { getQuestions } from "../../actions/questions";
 
 const QuizForm = props => {
   const dispatch = useDispatch();
+  const questions = useSelector(state => state.questions.questions);
   const { register, handleSubmit, errors } = useForm();
 
   const categories = [
@@ -48,18 +49,6 @@ const QuizForm = props => {
     const selectedDifficulty = formData.get("difficulty");
     const noOfQuestions = formData.get("noofquestions");
 
-    // get all form entries
-    // const data = formData.entries();
-    // console.log("FORM ENTRIES", data.next());
-
-    // var obj = data.next();
-    // var retrieved = {};
-    // while (undefined !== obj.value) {
-    //   retrieved[obj.value[0]] = obj.value[1];
-    //   obj = data.next();
-    // }
-    // console.log("retrieved: ", retrieved);
-
     dispatch(
       getQuestions({
         selectedCategory,
@@ -67,12 +56,16 @@ const QuizForm = props => {
         noOfQuestions
       })
     );
-
-    props.history.push("/quiz");
   };
 
   useEffect(() => {
     addOptions();
+  });
+
+  useEffect(() => {
+    if (questions.length > 0) {
+      props.history.push("/quiz");
+    }
   });
 
   return (
