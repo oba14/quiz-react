@@ -13,22 +13,28 @@ function Answers() {
       <Answer
         letter="a"
         answer={decodeURIComponent(question.correct_answer)}
-        selected={currentAnswer === "a"}
+        selected={currentAnswer === decodeURIComponent(question.correct_answer)}
       />
       <Answer
         letter="b"
         answer={decodeURIComponent(question.incorrect_answers[0])}
-        selected={currentAnswer === "b"}
+        selected={
+          currentAnswer === decodeURIComponent(question.incorrect_answers[0])
+        }
       />
       <Answer
         letter="c"
         answer={decodeURIComponent(question.incorrect_answers[1])}
-        selected={currentAnswer === "c"}
+        selected={
+          currentAnswer === decodeURIComponent(question.incorrect_answers[1])
+        }
       />
       <Answer
         letter="d"
         answer={decodeURIComponent(question.incorrect_answers[2])}
-        selected={currentAnswer === "d"}
+        selected={
+          currentAnswer === decodeURIComponent(question.incorrect_answers[2])
+        }
       />
     </>
   );
