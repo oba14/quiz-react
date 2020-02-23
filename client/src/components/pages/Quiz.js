@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import {
-  getQuestions,
   setError,
   setAnswers,
   setCurrentAnswer,
   setCurrentQuestion,
   setShowResults,
-  quit
+  quitQuiz,
+  resetQuiz
 } from "../../actions/questions";
 import Progress from "../layout/Progress";
 import Question from "../layout/Question";
@@ -85,13 +85,14 @@ const Quiz = props => {
   };
 
   const restart = () => {
-    dispatch({ type: "RESET_QUIZ" });
+    dispatch(resetQuiz());
   };
 
   const quit = () => {
-    dispatch({
-      type: "QUIT"
-    });
+    dispatch(quitQuiz());
+    // dispatch({
+    //   type: "QUIT"
+    // });
   };
 
   const next = () => {

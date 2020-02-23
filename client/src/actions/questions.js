@@ -8,7 +8,8 @@ import {
   SET_CURRENT_ANSWER,
   SET_CURRENT_QUESTION,
   SET_SHOW_RESULTS,
-  QUIT
+  QUIT,
+  RESET_QUIZ
 } from "./types";
 
 const url = "http://localhost:5000/quiz";
@@ -86,8 +87,14 @@ export const setShowResults = () => dispatch => {
   });
 };
 
-export const quit = () => dispatch => {
+export const quitQuiz = () => dispatch => {
   dispatch({
     type: QUIT
+  });
+};
+
+export const resetQuiz = () => dispatch => {
+  dispatch({
+    type: RESET_QUIZ
   });
 };

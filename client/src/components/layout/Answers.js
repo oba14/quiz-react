@@ -12,16 +12,12 @@ function Answers() {
   let answersArray = [];
   useEffect(() => {
     answersArray.push({
-      key: "a",
-      letter: "a",
       answer: decodeURIComponent(question.correct_answer),
       selected: currentAnswer === decodeURIComponent(question.correct_answer)
     });
 
     question.incorrect_answers.map(element => {
       answersArray.push({
-        key: "b",
-        letter: "b",
         answer: decodeURIComponent(element),
         selected: currentAnswer === decodeURIComponent(element)
       });
@@ -30,7 +26,7 @@ function Answers() {
     setanswersCombine(shuffleArray(answersArray));
   }, [question]);
 
-  function shuffleArray(array) {
+  const shuffleArray = array => {
     let i = array.length - 1;
     for (; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -39,15 +35,14 @@ function Answers() {
       array[j] = temp;
     }
     return array;
-  }
+  };
 
   return (
     <>
       {answersCombine.length > 0 &&
-        answersCombine.map((anw, index) => (
+        answersCombine.map(anw => (
           <Answer
             key={anw.answer}
-            letter={anw.letter}
             answer={anw.answer}
             selected={currentAnswer === anw.answer}
           />

@@ -4,9 +4,6 @@ import { SET_CURRENT_ANSWER, SET_ERROR } from "../../actions/types";
 
 function Answer(props) {
   const classes = ["answer"];
-
-  console.log("PROPS SELECTED", props.selected);
-
   const dispatch = useDispatch();
 
   const handleClick = e => {
@@ -24,12 +21,8 @@ function Answer(props) {
     classes.push("selected");
   }
   return (
-    <button
-      value={props.letter}
-      className={classes.join(" ")}
-      onClick={handleClick}
-    >
-      <span className="letter">{props.letter}.</span> {props.answer}
+    <button className={classes.join(" ")} onClick={handleClick}>
+      {props.answer}
     </button>
   );
 }
