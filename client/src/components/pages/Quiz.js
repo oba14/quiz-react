@@ -7,7 +7,8 @@ import {
   setAnswers,
   setCurrentAnswer,
   setCurrentQuestion,
-  setShowResults
+  setShowResults,
+  quit
 } from "../../actions/questions";
 import Progress from "../layout/Progress";
 import Question from "../layout/Question";
@@ -87,6 +88,12 @@ const Quiz = props => {
     dispatch({ type: "RESET_QUIZ" });
   };
 
+  const quit = () => {
+    dispatch({
+      type: "QUIT"
+    });
+  };
+
   const next = () => {
     const answer = {
       questionId: decodeURIComponent(question.question),
@@ -129,6 +136,9 @@ const Quiz = props => {
         <ul>{renderResultsData()}</ul>
         <button className="btn btn-primary" onClick={restart}>
           Restart
+        </button>
+        <button className="btn btn-primary" onClick={quit}>
+          Quit
         </button>
       </div>
     );
