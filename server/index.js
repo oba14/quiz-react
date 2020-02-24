@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const cors = require("cors");
 const port = process.env.PORT || 5000;
-const url = process.env.URL;
+const url = process.env.URL || 'https://opentdb.com/api.php?';
 const fetch = require("node-fetch");
 
 app.use(cors());
