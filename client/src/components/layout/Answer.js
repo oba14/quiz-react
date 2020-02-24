@@ -1,28 +1,28 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { SET_CURRENT_ANSWER, SET_ERROR } from "../../actions/types";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { SET_CURRENT_ANSWER, SET_ERROR } from '../../actions/types';
 
-function Answer(props) {
-  const classes = ["answer"];
+function Answer({ answer, selected }) {
+  const classes = [ 'answer' ];
   const dispatch = useDispatch();
 
-  const handleClick = e => {
+  const handleClick = () => {
     dispatch({
       type: SET_CURRENT_ANSWER,
-      currentAnswer: props.answer
+      currentAnswer: answer
     });
     dispatch({
       type: SET_ERROR,
-      error: ""
+      error: ''
     });
   };
 
-  if (props.selected) {
-    classes.push("selected");
+  if (selected) {
+    classes.push('selected');
   }
   return (
-    <button className={classes.join(" ")} onClick={handleClick}>
-      {props.answer}
+    <button className={ classes.join(' ') } onClick={ handleClick }>
+      {answer}
     </button>
   );
 }

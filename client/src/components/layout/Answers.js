@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Answer from "./Answer";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Answer from './Answer';
 
 function Answers() {
   const { currentAnswer, currentQuestion, questions } = useSelector(
     state => state.questions
   );
-  const [answersCombine, setanswersCombine] = useState([]);
+  const [ answersCombine, setanswersCombine ] = useState([]);
   const question = questions[currentQuestion];
 
-  let answersArray = [];
+  const answersArray = [];
   useEffect(() => {
     answersArray.push({
       answer: decodeURIComponent(question.correct_answer),
@@ -24,7 +24,7 @@ function Answers() {
     });
 
     setanswersCombine(shuffleArray(answersArray));
-  }, [question]);
+  }, [ question ]);
 
   const shuffleArray = array => {
     let i = array.length - 1;
@@ -42,9 +42,9 @@ function Answers() {
       {answersCombine.length > 0 &&
         answersCombine.map(anw => (
           <Answer
-            key={anw.answer}
-            answer={anw.answer}
-            selected={currentAnswer === anw.answer}
+            key={ anw.answer }
+            answer={ anw.answer }
+            selected={ currentAnswer === anw.answer }
           />
         ))}
     </>

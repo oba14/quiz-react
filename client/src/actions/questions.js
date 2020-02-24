@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   GET_QUESTIONS,
   ERROR_FETCHING,
@@ -10,9 +10,9 @@ import {
   SET_SHOW_RESULTS,
   QUIT,
   RESET_QUIZ
-} from "./types";
+} from './types';
 
-const url = "http://localhost:5000/quiz";
+const url = 'http://localhost:5000/quiz';
 
 // Fetch ALL FORMS from mongodb and display item when component is rendered
 export const getQuestions = data => {
@@ -23,7 +23,7 @@ export const getQuestions = data => {
     try {
       //await axios(`${url}amount=${data.noOfQuestions}&category=${data.selectedCategory}&difficulty=${data.selectedDifficulty}&type=multiple&encode=url3986`)
       await axios({
-        method: "post",
+        method: 'post',
         url: url,
         data: {
           noOfQuestions: data.noOfQuestions,
@@ -32,7 +32,7 @@ export const getQuestions = data => {
         }
       })
         .then(res => {
-          console.log("response", res);
+          console.log('response', res);
 
           dispatch({
             type: GET_QUESTIONS,
@@ -40,7 +40,7 @@ export const getQuestions = data => {
           });
         })
         .catch(error => {
-          console.log("Can’t access " + url + " response. Blocked by browser?");
+          console.log('Can’t access ' + url + ' response. Blocked by browser?');
           dispatch({
             type: ERROR_FETCHING,
             payload: error.message
@@ -56,7 +56,7 @@ export const getQuestions = data => {
 };
 
 export const setError = () => dispatch => {
-  dispatch({ type: SET_ERROR, error: "Please select an option" });
+  dispatch({ type: SET_ERROR, error: 'Please select an option' });
 };
 
 export const setAnswers = answers => dispatch => {

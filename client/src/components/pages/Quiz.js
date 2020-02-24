@@ -1,6 +1,6 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 import {
   setError,
   setAnswers,
@@ -9,16 +9,16 @@ import {
   setShowResults,
   quitQuiz,
   resetQuiz
-} from "../../actions/questions";
-import Progress from "../layout/Progress";
-import Question from "../layout/Question";
-import Answers from "../layout/Answers";
-import "./quiz.css";
+} from '../../actions/questions';
+import Progress from '../layout/Progress';
+import Question from '../layout/Question';
+import Answers from '../layout/Answers';
+import './quiz.css';
 
 const Quiz = props => {
-  console.log("this is dashboard");
+  console.log('this is dashboard');
 
-  const [answerColor, setAnswerColor] = useState("");
+  const [ answerColor, setAnswerColor ] = useState('');
   const {
     questions,
     currentQuestion,
@@ -31,22 +31,11 @@ const Quiz = props => {
 
   let question = {};
 
-  // console.log('QUIZ QUESTIONS', questions);
-
-  // useEffect(() => {
-
-  //   fetchData();
-  // }, [])
-
   useEffect(() => {
     if (questions.length === 0) {
-      props.history.push("/");
+      props.history.push('/');
     }
-  }, [questions]);
-
-  // const fetchData = () => {
-  //   dispatch(getQuestions())
-  // }
+  }, [ questions ]);
 
   const renderError = () => {
     if (!error) {
@@ -57,8 +46,6 @@ const Quiz = props => {
   };
 
   const renderResultMark = (question, answer) => {
-    // console.log('RENDER RESULT QUESTION', question);
-    // console.log('RENDER RESULT Answer', answer);
 
     if (
       decodeURIComponent(question.correct_answer) ===
@@ -75,9 +62,8 @@ const Quiz = props => {
       const question = questions.find(
         question => decodeURIComponent(question.question) === answer.questionId
       );
-      //{decodeURIComponent(question.question)} - {renderResultMark(question, answer)}
       return (
-        <div key={question.question}>
+        <div key={ question.question }>
           {index + 1} - {renderResultMark(question, answer)}
         </div>
       );
@@ -90,9 +76,6 @@ const Quiz = props => {
 
   const quit = () => {
     dispatch(quitQuiz());
-    // dispatch({
-    //   type: "QUIT"
-    // });
   };
 
   const next = () => {
@@ -108,7 +91,7 @@ const Quiz = props => {
 
     answers.push(answer);
     dispatch(setAnswers(answers));
-    dispatch(setCurrentAnswer(""));
+    dispatch(setCurrentAnswer(''));
 
     if (currentQuestion + 1 < questions.length) {
       dispatch(setCurrentQuestion(currentQuestion));
@@ -120,9 +103,9 @@ const Quiz = props => {
 
   const answerStatus = e => {
     if (e.target.value === questions.correct_answer) {
-      setAnswerColor("green");
+      setAnswerColor('green');
     } else {
-      setAnswerColor("red");
+      setAnswerColor('red');
     }
   };
 
@@ -135,10 +118,10 @@ const Quiz = props => {
       <div className="container results">
         <h2>Results</h2>
         <ul>{renderResultsData()}</ul>
-        <button className="btn btn-primary" onClick={restart}>
+        <button className="btn btn-primary" onClick={ restart }>
           Restart
         </button>
-        <button className="btn btn-primary" onClick={quit}>
+        <button className="btn btn-primary" onClick={ quit }>
           Quit
         </button>
       </div>
@@ -148,11 +131,11 @@ const Quiz = props => {
       <>
         {questions && questions.length > 0 && (
           <div className="container">
-            <Progress total={questions.length} current={currentQuestion + 1} />
+            <Progress total={ questions.length } current={ currentQuestion + 1 } />
             <Question />
             {renderError()}
             <Answers />
-            <button className="btn btn-primary" onClick={next}>
+            <button className="btn btn-primary" onClick={ next }>
               Confirm and Continue
             </button>
           </div>

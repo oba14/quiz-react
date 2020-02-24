@@ -1,9 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 const Navbar = () => {
-  const auth = useSelector(state => state.auth);
 
   return (
     <>

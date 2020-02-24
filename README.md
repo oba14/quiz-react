@@ -8,6 +8,9 @@ A Quiz App having a frontend in React and a backend with an express server. Quiz
 React hooks are used that let us use state and other react features without having to write classes.  
 </p>
 
+### Quiz App can be accessed on heroku using following link
+- [Quiz App](https://quiz-app-oa.herokuapp.com/)
+
 ## Prerequirements
 
 - [Node](https://nodejs.org/en/download/) ^16.12.0
