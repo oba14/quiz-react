@@ -16,7 +16,6 @@ import Answers from '../layout/Answers';
 import './quiz.css';
 
 const Quiz = props => {
-  console.log('this is dashboard');
 
   const [ answerColor, setAnswerColor ] = useState('');
   const {
