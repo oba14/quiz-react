@@ -14,14 +14,12 @@ import {
 
 const url = 'http://localhost:5000/quiz';
 
-// Fetch ALL FORMS from mongodb and display item when component is rendered
 export const getQuestions = data => {
   return async dispatch => {
     dispatch({
       type: IS_FETCHING
     });
     try {
-      //await axios(`${url}amount=${data.noOfQuestions}&category=${data.selectedCategory}&difficulty=${data.selectedDifficulty}&type=multiple&encode=url3986`)
       await axios({
         method: 'post',
         url: url,
@@ -32,7 +30,6 @@ export const getQuestions = data => {
         }
       })
         .then(res => {
-          console.log('response', res);
 
           dispatch({
             type: GET_QUESTIONS,
