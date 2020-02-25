@@ -17,6 +17,7 @@ import "./quiz.css";
 
 const Quiz = props => {
   const [answerColor, setAnswerColor] = useState("");
+
   const {
     questions,
     currentQuestion,
@@ -29,22 +30,11 @@ const Quiz = props => {
 
   let question = {};
 
-  // console.log('QUIZ QUESTIONS', questions);
-
-  // useEffect(() => {
-
-  //   fetchData();
-  // }, [])
-
   useEffect(() => {
     if (questions.length === 0) {
       props.history.push("/");
     }
   }, [questions]);
-
-  // const fetchData = () => {
-  //   dispatch(getQuestions())
-  // }
 
   const renderError = () => {
     if (!error) {
@@ -55,9 +45,6 @@ const Quiz = props => {
   };
 
   const renderResultMark = (question, answer) => {
-    // console.log('RENDER RESULT QUESTION', question);
-    // console.log('RENDER RESULT Answer', answer);
-
     if (
       decodeURIComponent(question.correct_answer) ===
       decodeURIComponent(answer.answer)
@@ -73,7 +60,6 @@ const Quiz = props => {
       const question = questions.find(
         question => decodeURIComponent(question.question) === answer.questionId
       );
-      //{decodeURIComponent(question.question)} - {renderResultMark(question, answer)}
       return (
         <div key={question.question}>
           {index + 1} - {renderResultMark(question, answer)}
@@ -88,9 +74,6 @@ const Quiz = props => {
 
   const quit = () => {
     dispatch(quitQuiz());
-    // dispatch({
-    //   type: "QUIT"
-    // });
   };
 
   const next = () => {

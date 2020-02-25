@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Progress(props) {
+function Progress({ current, total }) {
   return (
     <h2>
-            Question {props.current} of {props.total}
+            Question {current} of {total}
     </h2>
   );
 }

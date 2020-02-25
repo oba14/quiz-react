@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/oba14/quiz-react/blob/master/LICENSE) [![react version](https://img.shields.io/badge/react-16.12-blue)](https://www.npmjs.com/package/react) [![mongodb](https://img.shields.io/badge/mongoDB-3.4.1-blue)](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3) [![npm](https://img.shields.io/npm/v/npm)](https://nodejs.org/en/download/package-manager/) [![redux](https://img.shields.io/badge/redux-4.04-blue)](https://www.npmjs.com/package/redux) [![express](https://img.shields.io/badge/express-4.17.1-blue)](https://www.npmjs.com/package/express)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/oba14/quiz-react/blob/master/LICENSE) [![react version](https://img.shields.io/badge/react-16.12-blue)](https://www.npmjs.com/package/react) [![npm](https://img.shields.io/npm/v/npm)](https://nodejs.org/en/download/package-manager/) [![redux](https://img.shields.io/badge/redux-4.04-blue)](https://www.npmjs.com/package/redux) [![express](https://img.shields.io/badge/express-4.17.1-blue)](https://www.npmjs.com/package/express)
 
 <h1 align="center">
 Quiz app created using React with Redux.
@@ -7,6 +7,9 @@ Quiz app created using React with Redux.
 A Quiz App having a frontend in React and a backend with an express server. Quiz questions are generated from an opensource trivia database  (https://opentdb.com/) having around 4000 questions divided in 23 categories.
 React hooks are used that let us use state and other react features without having to write classes.  
 </p>
+
+### Quiz App can be accessed on heroku using following link
+- [Quiz App](https://quiz-app-oa.herokuapp.com/)
 
 ## Prerequirements
 
