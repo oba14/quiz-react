@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   setError,
   setAnswers,
@@ -16,7 +16,7 @@ import Answers from "../layout/Answers";
 import "./quiz.css";
 
 const Quiz = props => {
-  const [answerColor, setAnswerColor] = useState("");
+  // const [answerColor, setAnswerColor] = useState("");
 
   const {
     questions,
@@ -99,13 +99,13 @@ const Quiz = props => {
     dispatch(setShowResults());
   };
 
-  const answerStatus = e => {
-    if (e.target.value === questions.correct_answer) {
-      setAnswerColor("green");
-    } else {
-      setAnswerColor("red");
-    }
-  };
+  // const answerStatus = e => {
+  //   if (e.target.value === questions.correct_answer) {
+  //     setAnswerColor("green");
+  //   } else {
+  //     setAnswerColor("red");
+  //   }
+  // };
 
   if (questions.length > 0) {
     question = questions[currentQuestion];
