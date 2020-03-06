@@ -6,9 +6,9 @@ import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-test('renders learn react link', () => {
+test('renders Quiz App made with React and Redux', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
+  const linkElement = getByText(/Quiz App made with React and Redux/i);
   expect(linkElement).toBeInTheDocument();
 });
 
