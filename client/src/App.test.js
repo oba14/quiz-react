@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
 import Enzyme, { shallow } from "enzyme";
@@ -9,6 +9,8 @@ import { Link, Route, Router, Switch } from "react-router-dom";
 import { createMemoryHistory } from "history";
 
 Enzyme.configure({ adapter: new Adapter() });
+
+afterEach(cleanup);
 
 test("renders Quiz App made with React and Redux", () => {
   const { getByText } = render(<App />);

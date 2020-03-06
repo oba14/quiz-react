@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matched snapshot 1`] = `
+<h2
+  data-testid="progress-check"
+>
+  Question 
+  6
+   of 
+  30
+</h2>
+`;
