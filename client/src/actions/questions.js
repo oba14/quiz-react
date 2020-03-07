@@ -14,11 +14,29 @@ import {
 
 const url = "http://localhost:5000/quiz";
 
+export const questions = data => {
+  return {
+    type: GET_QUESTIONS,
+    payload: data
+  };
+};
+
+export const isfetching = () => {
+  return {
+    type: IS_FETCHING
+  };
+};
+
+export const errorFetching = err => {
+  return {
+    type: ERROR_FETCHING,
+    payload: err
+  };
+};
+
 export const getQuestions = data => {
   return async dispatch => {
-    dispatch({
-      type: IS_FETCHING
-    });
+    dispatch(isfetching());
     try {
       await axios({
         method: "post",
@@ -30,23 +48,14 @@ export const getQuestions = data => {
         }
       })
         .then(res => {
-          dispatch({
-            type: GET_QUESTIONS,
-            payload: res.data.results
-          });
+          dispatch(questions(res.data.results));
         })
         .catch(error => {
           console.log("Can’t access " + url + " response. Blocked by browser?");
-          dispatch({
-            type: ERROR_FETCHING,
-            payload: error.message
-          });
+          dispatch(errorFetching(error.message));
         });
     } catch (error) {
-      dispatch({
-        type: ERROR_FETCHING,
-        payload: error.message
-      });
+      dispatch(errorFetching(error.message));
     }
   };
 };

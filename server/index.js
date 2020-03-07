@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const cors = require("cors");
 const port = process.env.PORT || 5000;
-const url = process.env.URL || 'https://opentdb.com/api.php?';
+const url = process.env.URL || "https://opentdb.com/api.php?";
 const fetch = require("node-fetch");
 
 app.use(cors());
@@ -22,6 +22,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/quiz", (req, res) => {
+  console.log("QUIZ REQ", req.body);
+
   if (
     !req.body.noOfQuestions ||
     !req.body.selectedCategory ||
@@ -36,9 +38,12 @@ app.post("/quiz", (req, res) => {
     )
       .then(response => response.json())
       .then(data => {
+        console.log("QUIZ DATA", data);
+
         res.status(200).send(data);
       })
       .catch(error => {
+        console.log("QUIZ ERROR", error);
         res.status(404).end({ error: error });
         //.end();
       });
