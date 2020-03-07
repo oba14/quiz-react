@@ -26,7 +26,7 @@ test("Quiz button", () => {
 describe("<App />", () => {
   it("renders", () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.exists(".App")).toEqual(true);
+    expect(wrapper.exists(".Landing")).toEqual(true);
   });
 });
 
@@ -60,7 +60,6 @@ test("full app rendering/navigating", () => {
   );
 
   fireEvent.click(screen.getByText(/contact/i), leftClick);
-  // normally I'd use a data-testid, but just wanted to show this is also possible
   expect(container.innerHTML).toMatch("tech.startup.114@gmail.com");
 });
 
