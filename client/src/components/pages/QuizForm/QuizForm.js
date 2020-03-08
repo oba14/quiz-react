@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { getQuestions } from '../../actions/questions';
+import { getQuestions } from '../../../actions/questions';
 
 const QuizForm = props => {
   const dispatch = useDispatch();

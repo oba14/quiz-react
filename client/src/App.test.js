@@ -49,6 +49,7 @@ function renderWithRouter(
 }
 
 test("full app rendering/navigating", () => {
+  afterEach(cleanup);
   const { container } = renderWithRouter(<App />);
   // normally I'd use a data-testid, but just wanted to show this is also possible
   expect(container.innerHTML).toMatch("Quiz App made with React");
