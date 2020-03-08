@@ -9,14 +9,14 @@ import {
   SET_SHOW_RESULTS,
   RESET_QUIZ,
   QUIT
-} from '../actions/types';
+} from "../actions/types";
 
 const initialState = {
   questions: [],
   isFetching: false,
   error: null,
   currentQuestion: 0,
-  currentAnswer: '',
+  currentAnswer: "",
   answers: [],
   showResults: false
 };
@@ -59,9 +59,9 @@ const questionsReducer = (state = initialState, action) => {
         ...state,
         answers: [],
         currentQuestion: 0,
-        currentAnswer: '',
+        currentAnswer: "",
         showResults: false,
-        error: ''
+        error: ""
       };
     case QUIT:
       return {
@@ -70,7 +70,7 @@ const questionsReducer = (state = initialState, action) => {
         isFetching: false,
         error: null,
         currentQuestion: 0,
-        currentAnswer: '',
+        currentAnswer: "",
         answers: [],
         showResults: false
       };
