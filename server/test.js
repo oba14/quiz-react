@@ -12,7 +12,7 @@ app.use(
 );
 const noOfQuestions = 3;
 
-describe("Report System", () => {
+describe("Quiz App Server", () => {
   describe("Erroneous URL", () => {
     it("returns 404", done => {
       request(app)
