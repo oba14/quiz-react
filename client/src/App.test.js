@@ -20,6 +20,7 @@ test("renders Quiz App made with React and Redux", () => {
 
 test("Quiz button", () => {
   const { getByTestId } = render(<App />);
+  expect(getByTestId("start-quiz-btn")).toBeInTheDocument();
   expect(getByTestId("start-quiz-btn")).not.toBeDisabled();
 });
 

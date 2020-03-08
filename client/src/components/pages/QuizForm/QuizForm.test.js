@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import MyConnectedComponent from '.';
+import QuizForm from './QuizForm';
 import { getQuestions } from '../../../actions/questions';
 
 const mockStore = configureStore([]);
@@ -11,14 +11,14 @@ describe('My Connected React-Redux Component', () => {
   let component;
   beforeEach(() => {
     store = mockStore({
-      myState: 'sample text',
+      questions: [],
     });
 
     store.dispatch = jest.fn();
 
     component = renderer.create(
       <Provider store={store}>
-        <MyConnectedComponent />
+        <QuizForm />
       </Provider>
     );
   });
@@ -32,11 +32,11 @@ describe('My Connected React-Redux Component', () => {
 
       renderer.act(() => {
         component.root.findByType('input')
-          .props.onChange({ target: { value: 'some other text' } });
+          .props.onChange({ target: { value: 2 } });
       });
       expect(store.dispatch).toHaveBeenCalledTimes(1);
       expect(store.dispatch).toHaveBeenCalledWith(
-        myAction({ payload: 'sample text' })
+        getQuestions({ payload: 'sample text' })
       );
   });
 });

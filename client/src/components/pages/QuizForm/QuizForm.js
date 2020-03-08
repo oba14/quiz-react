@@ -107,7 +107,7 @@ const QuizForm = props => {
           required
         />
         <br />
-        <button className="btn btn-primary" type="submit">
+        <button data-testid="form-submit-btn" className="btn btn-primary" type="submit">
           {' '}
           Submit{' '}
         </button>
