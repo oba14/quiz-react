@@ -18,7 +18,7 @@ describe("actions", () => {
   });
 });
 
-describe("Testing fetching questions", () => {
+describe("Testing Actions for fetching questions", () => {
   const data = {
     selectedCategory: "21",
     selectedDifficulty: "hard",

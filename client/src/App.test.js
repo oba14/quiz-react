@@ -23,12 +23,12 @@ test("Quiz button", () => {
   expect(getByTestId("start-quiz-btn")).not.toBeDisabled();
 });
 
-describe("<App />", () => {
-  it("renders", () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.exists(".Landing")).toEqual(true);
-  });
-});
+// describe("<App />", () => {
+//   it("renders", () => {
+//     const wrapper = shallow(<App />);
+//     expect(wrapper.exists(".Landing")).toEqual(true);
+//   });
+// });
 
 // this is a handy function that I would utilize for any component
 // that relies on the router being in context
@@ -52,9 +52,9 @@ test("full app rendering/navigating", () => {
   const { container } = renderWithRouter(<App />);
   // normally I'd use a data-testid, but just wanted to show this is also possible
   expect(container.innerHTML).toMatch("Quiz App made with React");
+
   const leftClick = { button: 0 };
   fireEvent.click(screen.getByText(/about/i), leftClick);
-  // normally I'd use a data-testid, but just wanted to show this is also possible
   expect(container.innerHTML).toMatch(
     "A quiz app made using react. Questions are generated using a free api hosted at https://opentdb.com/"
   );

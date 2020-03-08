@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matched snapshot 1`] = `
+exports[`Test Progress Component matched snapshot 1`] = `
 <h2
   data-testid="progress-check"
 >

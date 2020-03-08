@@ -24,32 +24,72 @@ describe("Quiz reducer", () => {
       isFetching: false,
       questions: { name: "test" }
     });
-
-    //     expect(
-    //       reducer(
-    //         [
-    //           {
-    //             text: "Use Redux",
-    //             completed: false,
-    //             id: 0
-    //           }
-    //         ],
-    //         {
-    //           type: types.ADD_TODO,
-    //           text: "Run the tests"
-    //         }
-    //       )
-    //     ).toEqual([
-    //       {
-    //         text: "Run the tests",
-    //         completed: false,
-    //         id: 1
-    //       },
-    //       {
-    //         text: "Use Redux",
-    //         completed: false,
-    //         id: 0
-    //       }
-    //     ]);
   });
+
+  it("show current answer", () => {
+    expect(
+      reducer([], {
+        type: types.SET_CURRENT_ANSWER,
+        currentAnswer: "Sydney"
+      })
+    ).toEqual({
+      currentAnswer: "Sydney"
+    });
+  });
+
+  it("Reset the quiz", () => {
+    expect(
+      reducer([], {
+        type: types.RESET_QUIZ
+      })
+    ).toEqual({
+      answers: [],
+      currentQuestion: 0,
+      currentAnswer: "",
+      showResults: false,
+      error: ""
+    });
+  });
+
+  it("Quit the quiz", () => {
+    expect(
+      reducer([], {
+        type: types.QUIT
+      })
+    ).toEqual({
+      questions: [],
+      isFetching: false,
+      error: null,
+      currentQuestion: 0,
+      currentAnswer: "",
+      answers: [],
+      showResults: false
+    });
+  });
+  //     expect(
+  //       reducer(
+  //         [
+  //           {
+  //             text: "Use Redux",
+  //             completed: false,
+  //             id: 0
+  //           }
+  //         ],
+  //         {
+  //           type: types.ADD_TODO,
+  //           text: "Run the tests"
+  //         }
+  //       )
+  //     ).toEqual([
+  //       {
+  //         text: "Run the tests",
+  //         completed: false,
+  //         id: 1
+  //       },
+  //       {
+  //         text: "Use Redux",
+  //         completed: false,
+  //         id: 0
+  //       }
+  //     ]);
 });
