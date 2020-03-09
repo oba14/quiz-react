@@ -7,6 +7,8 @@ import Adapter from "enzyme-adapter-react-16";
 import { withRouter } from "react-router";
 import { Link, Route, Router, Switch } from "react-router-dom";
 import { createMemoryHistory } from "history";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -49,28 +51,60 @@ function renderWithRouter(
   };
 }
 
-test("full app rendering/navigating", () => {
+describe("Bad REQUEST", () => {
   afterEach(cleanup);
-  const { container } = renderWithRouter(<App />);
-  // normally I'd use a data-testid, but just wanted to show this is also possible
-  expect(container.innerHTML).toMatch("Quiz App made with React");
-
-  const leftClick = { button: 0 };
-  fireEvent.click(screen.getByText(/about/i), leftClick);
-  expect(container.innerHTML).toMatch(
-    "A quiz app made using react. Questions are generated using a free api hosted at https://opentdb.com/"
-  );
-
-  fireEvent.click(screen.getByText(/contact/i), leftClick);
-  expect(container.innerHTML).toMatch("tech.startup.114@gmail.com");
+  test("landing on a bad page", () => {
+    const { container } = renderWithRouter(<App />, {
+      route: "/errorpage"
+    });
+    // normally I'd use a data-testid, but just wanted to show this is also possible
+    expect(container.innerHTML).toMatch("Page Not Found");
+  });
 });
 
-test("landing on a bad page", () => {
-  const { container } = renderWithRouter(<App />, {
-    route: "/errorpage"
+describe("NAVIGATION CHECK", () => {
+  afterEach(cleanup);
+  test("full app rendering/navigating", () => {
+    const { container } = renderWithRouter(<App />);
+    // normally I'd use a data-testid, but just wanted to show this is also possible
+    expect(container.innerHTML).toMatch("Quiz App made with React");
+
+    const leftClick = { button: 0 };
+    fireEvent.click(screen.getByText(/about/i), leftClick);
+    expect(container.innerHTML).toMatch(
+      "A quiz app made using react. Questions are generated using a free api hosted at https://opentdb.com/"
+    );
+
+    fireEvent.click(screen.getByText(/contact/i), leftClick);
+    expect(container.innerHTML).toMatch("tech.startup.114@gmail.com");
   });
-  // normally I'd use a data-testid, but just wanted to show this is also possible
-  expect(container.innerHTML).toMatch("Page Not Found");
+});
+
+describe("Quiz button check", () => {
+  const initialState = {
+    questions: [],
+    isFetching: false,
+    error: null,
+    currentQuestion: 0,
+    currentAnswer: "",
+    answers: [],
+    showResults: false
+  };
+
+  const mockStore = configureStore();
+  let store, wrapper;
+
+  test("Quiz button click event", () => {
+    store = mockStore(initialState);
+    const { getByTestId, container, getByRole } = render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+
+    fireEvent.click(getByTestId("start-quiz-navlink"));
+    expect(getByTestId("quiz-form-heading")).toBeInTheDocument();
+  });
 });
 
 // test("rendering a component that uses withRouter", () => {

@@ -4,7 +4,9 @@ exports[`My Connected React-Redux Component should render with given state from 
 <div
   className="container"
 >
-  <h3>
+  <h3
+    data-testid="quiz-form-heading"
+  >
     Select quiz category and difficult level
   </h3>
   <form
