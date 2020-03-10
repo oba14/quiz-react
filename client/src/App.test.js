@@ -67,7 +67,7 @@ describe("Bad REQUEST", () => {
 describe("NAVIGATION CHECK", () => {
   afterEach(cleanup);
   test("full app rendering/navigating", () => {
-    const { container } = renderWithRouter(<App />);
+    const { container, getByTestId } = renderWithRouter(<App />);
     // normally I'd use a data-testid, but just wanted to show this is also possible
     expect(container.innerHTML).toMatch("Quiz App made with React");
 
@@ -79,6 +79,7 @@ describe("NAVIGATION CHECK", () => {
 
     fireEvent.click(screen.getByText(/contact/i), leftClick);
     expect(container.innerHTML).toMatch("tech.startup.114@gmail.com");
+    expect(getByTestId("test-contact-email")).toBeVisible();
   });
 });
 
