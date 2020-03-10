@@ -13,17 +13,19 @@ import configureStore from "redux-mock-store";
 Enzyme.configure({ adapter: new Adapter() });
 
 afterEach(cleanup);
+describe("Render Quiz App without crash", () => {
+  afterEach(cleanup);
+  test("renders Quiz App made with React and Redux", () => {
+    const { getByText } = render(<App />);
+    const linkElement = getByText(/Quiz App made with React and Redux/i);
+    expect(linkElement).toBeInTheDocument();
+  });
 
-test("renders Quiz App made with React and Redux", () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/Quiz App made with React and Redux/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
-test("Quiz button", () => {
-  const { getByTestId } = render(<App />);
-  expect(getByTestId("start-quiz-btn")).toBeInTheDocument();
-  expect(getByTestId("start-quiz-btn")).not.toBeDisabled();
+  test("Quiz button", () => {
+    const { getByTestId } = render(<App />);
+    expect(getByTestId("start-quiz-btn")).toBeInTheDocument();
+    expect(getByTestId("start-quiz-btn")).not.toBeDisabled();
+  });
 });
 
 // describe("<App />", () => {

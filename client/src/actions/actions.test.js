@@ -43,7 +43,7 @@ describe("Testing Actions for fetching questions", () => {
       type: types.IS_FETCHING
     });
   });
-  it("should create CREATE_THING_SUCCESS when creating succeeds", () => {
+  it("should call GET_QUESTIONS Action when data is provided", () => {
     fetchMock.postOnce("/api/things/", {
       body: data,
       headers: { "content-type": "application/json" }
@@ -53,10 +53,15 @@ describe("Testing Actions for fetching questions", () => {
       { type: types.GET_QUESTIONS, payload: [] }
     ];
 
+    const expectedActions2 = 2;
+
     const store = mockStore();
-    return store.dispatch(actions.getQuestions(data)).then(() => {
+    return store.dispatch(actions.getQuestions(data)).then(result => {
+      const myresult = store.getActions()[1].payload;
+      console.log("RESPONSESSS", myresult.length);
+
       // return of async actions
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(myresult.length).toEqual(expectedActions2);
     });
   });
   it("should create ERROR_FETCHING when data is not provided", () => {
