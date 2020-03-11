@@ -21,6 +21,7 @@ exports[`My Connected React-Redux Component should render with given state from 
      
     <br />
     <select
+      data-testid="category-test-quiz-form"
       id="categories"
       name="category"
       style={

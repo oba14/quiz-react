@@ -5,8 +5,11 @@ import { getQuestions } from "../../../actions/questions";
 
 const QuizForm = props => {
   const dispatch = useDispatch();
-  const questions = useSelector(state => state.questions.questions);
+  const questions = useSelector(state => state.questions);
   const { register, handleSubmit, errors } = useForm();
+
+  console.log("THIS IS QUIZ FORMMMMMMMMMMMM");
+  console.log("THIS IS QUIZ FORM STATEEEEEEE ", questions);
 
   const categories = [
     { id: 9, name: "General Knowledge" },
@@ -83,6 +86,7 @@ const QuizForm = props => {
       >
         <label>1- Select a category</label> <br></br>
         <select
+          data-testid = "category-test-quiz-form"
           style={{ width: "47%" }}
           id={"categories"}
           name="category"

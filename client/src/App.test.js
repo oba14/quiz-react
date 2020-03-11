@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import { render, waitForElement, screen, fireEvent, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
 import Enzyme, { shallow } from "enzyme";
@@ -9,6 +9,7 @@ import { Link, Route, Router, Switch } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
+import NotFound from "./components/pages/NotFound";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -56,10 +57,18 @@ function renderWithRouter(
 describe("Bad REQUEST", () => {
   afterEach(cleanup);
   test("landing on a bad page", () => {
-    const { container } = renderWithRouter(<App />, {
-      route: "/errorpage"
-    });
+    // const { container } = renderWithRouter(<App />, {
+    //   route: "/errorpage"
+    // });
     // normally I'd use a data-testid, but just wanted to show this is also possible
+    const history = createMemoryHistory();
+    history.push('/pagenotfound')
+    const { getByRole, container, getByTestId } = render(
+      <Router history={history}>
+        <NotFound />
+      </Router>
+    )
+    expect(getByTestId('page-not-found')).toHaveTextContent('Page Not Found')
     expect(container.innerHTML).toMatch("Page Not Found");
   });
 });
@@ -80,6 +89,10 @@ describe("NAVIGATION CHECK", () => {
     fireEvent.click(screen.getByText(/contact/i), leftClick);
     expect(container.innerHTML).toMatch("tech.startup.114@gmail.com");
     expect(getByTestId("test-contact-email")).toBeVisible();
+
+    fireEvent.click(screen.getByText(/home/i), leftClick);
+    expect(container.innerHTML).toMatch("Quiz App made with React");
+    expect(getByTestId("start-quiz-btn")).toBeVisible();
   });
 });
 
@@ -97,16 +110,21 @@ describe("Quiz button check", () => {
   const mockStore = configureStore();
   let store, wrapper;
 
-  test("Quiz button click event", () => {
+  test("Quiz button click event", async () => {
+    const leftClick = { button: 0 };
     store = mockStore(initialState);
     const { getByTestId, container, getByRole } = render(
       <Provider store={store}>
         <App />
       </Provider>
     );
-
-    fireEvent.click(getByTestId("start-quiz-navlink"));
+    const startQuiz = await waitForElement(() => getByTestId("start-quiz-navlink"))
+    //console.log('START QUIZ', startQuiz);
+    
+    // fireEvent.click(screen.getByTestId("start-quiz-navlink"));
+    fireEvent.click(screen.getByText(/start the quiz/i), leftClick);
     expect(getByTestId("quiz-form-heading")).toBeInTheDocument();
+    //expect(startQuiz).toBeInTheDocument();
   });
 });
 
