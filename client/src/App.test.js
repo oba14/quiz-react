@@ -1,5 +1,11 @@
 import React from "react";
-import { render, waitForElement, screen, fireEvent, cleanup } from "@testing-library/react";
+import {
+  render,
+  waitForElement,
+  screen,
+  fireEvent,
+  cleanup
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
 import Enzyme, { shallow } from "enzyme";
@@ -62,13 +68,13 @@ describe("Bad REQUEST", () => {
     // });
     // normally I'd use a data-testid, but just wanted to show this is also possible
     const history = createMemoryHistory();
-    history.push('/pagenotfound')
+    history.push("/pagenotfound");
     const { getByRole, container, getByTestId } = render(
       <Router history={history}>
         <NotFound />
       </Router>
-    )
-    expect(getByTestId('page-not-found')).toHaveTextContent('Page Not Found')
+    );
+    expect(getByTestId("page-not-found")).toHaveTextContent("Page Not Found");
     expect(container.innerHTML).toMatch("Page Not Found");
   });
 });
@@ -118,9 +124,11 @@ describe("Quiz button check", () => {
         <App />
       </Provider>
     );
-    const startQuiz = await waitForElement(() => getByTestId("start-quiz-navlink"))
+    const startQuiz = await waitForElement(() =>
+      getByTestId("start-quiz-navlink")
+    );
     //console.log('START QUIZ', startQuiz);
-    
+
     // fireEvent.click(screen.getByTestId("start-quiz-navlink"));
     fireEvent.click(screen.getByText(/start the quiz/i), leftClick);
     expect(getByTestId("quiz-form-heading")).toBeInTheDocument();
