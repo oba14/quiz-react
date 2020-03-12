@@ -40,6 +40,9 @@ const QuizForm = props => {
 
   const addOptions = () => {
     const categoryDom = document.getElementById("categories");
+    // console.log('CATEGORY DOM', categoryDom);
+    // console.log('CATEGORIESSSSSSS', categories);
+
     if (categories) {
       categories.map(category => {
         categoryDom.innerHTML += `<option value=${category.id}>${category.name}</option>`;
@@ -49,16 +52,18 @@ const QuizForm = props => {
 
   const onSubmit = () => {
     const myForm = document.getElementById("myForm");
-    const formData = new FormData(myForm);
-    const selectedCategory = formData.get("category");
-    const selectedDifficulty = formData.get("difficulty");
-    const noOfQuestions = formData.get("noofquestions");
+    console.log('MY FORMMMM',myForm);
+    
+    // const formData = new FormData(myForm);
+    // const selectedCategory = formData.get("category");
+    // const selectedDifficulty = formData.get("difficulty");
+    // const noOfQuestions = formData.get("noofquestions");
 
     dispatch(
       getQuestions({
-        selectedCategory,
-        selectedDifficulty,
-        noOfQuestions
+        // selectedCategory,
+        // selectedDifficulty,
+        // noOfQuestions
       })
     );
   };

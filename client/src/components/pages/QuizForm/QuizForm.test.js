@@ -10,6 +10,7 @@ const mockStore = configureStore([]);
 describe('My Connected React-Redux Component', () => {
   let store;
   let component;
+  afterEach(cleanup)
   beforeEach(() => {
     store = mockStore({
       questions: {

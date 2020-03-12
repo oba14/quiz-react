@@ -52,3 +52,5 @@ function Answers() {
 }
 
 export default Answers;
+
+// "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(<jsdom>)/)'",
