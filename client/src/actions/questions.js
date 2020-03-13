@@ -35,6 +35,8 @@ export const errorFetching = err => {
 };
 
 export const getQuestions = data => {
+  console.log("GET QUESTION ACTION BEING CALLED", data);
+  
   return async dispatch => {
     dispatch(isfetching());
     try {

@@ -2,11 +2,14 @@ import React from "react";
 import { render, fireEvent, cleanup, waitForElement } from "@testing-library/react";
 import QuizForm from './QuizForm';
 import { Provider } from 'react-redux';
+import thunk from "redux-thunk";
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { getQuestions } from "../../../actions/questions";
 
-const mockStore = configureStore([]);
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
+
 const initialState = {
   questions: [],
   isFetching: false,
@@ -28,21 +31,23 @@ describe("Quiz Form", () => {
     store.dispatch = jest.fn();
   });
 
-  it("displays initial to-dos", () => {
+  it("Check Categories in quiz form", () => {
     const { getByTestId, debug } = render(<Provider store= {store}><QuizForm /> </Provider>);
     debug();
     const categoryQuiz = getByTestId("category-test-quiz-form");
     expect(categoryQuiz).toBeInTheDocument();
   });
 
-  it("displays initial to-dos", async () => {
+  it("Submit the form", async () => {
 
     const { getByTestId, debug } = render(<Provider store= {store}><QuizForm /> </Provider>);
     const quizCategory = await waitForElement(() => getByTestId("category-test-quiz-form"))
     debug();
+    fireEvent.change(getByTestId("no-of-questions"), {target: {value: 2}})
     fireEvent.click(getByTestId("form-submit-btn"));
     expect(getByTestId("form-submit-btn")).toBeInTheDocument();
     expect(store.dispatch).toHaveBeenLastCalledWith(getQuestions());
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
   // it("adds a new to-do", () => {

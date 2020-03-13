@@ -6,7 +6,13 @@ import { getQuestions } from "../../../actions/questions";
 const QuizForm = props => {
   const dispatch = useDispatch();
   const questions = useSelector(state => state.questions);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    defaultValues: {
+    category: '9',
+    difficulty: "easy",
+    noofquestions: 2
+  }
+});
 
   console.log("THIS IS QUIZ FORMMMMMMMMMMMM");
   console.log("THIS IS QUIZ FORM STATEEEEEEE ", questions);
@@ -50,20 +56,23 @@ const QuizForm = props => {
     }
   };
 
-  const onSubmit = () => {
+  const onSubmit = data => {
     const myForm = document.getElementById("myForm");
-    console.log('MY FORMMMM',myForm);
-    
+    console.log('MY FORMMMM',data);
+    //console.log("Created FormData, " + [...myForm.keys()].length + " keys in data");
     // const formData = new FormData(myForm);
     // const selectedCategory = formData.get("category");
     // const selectedDifficulty = formData.get("difficulty");
     // const noOfQuestions = formData.get("noofquestions");
+    const selectedCategory = data.category;
+    const selectedDifficulty = data.difficulty;
+    const noOfQuestions = data.noofquestions;
 
     dispatch(
       getQuestions({
-        // selectedCategory,
-        // selectedDifficulty,
-        // noOfQuestions
+        selectedCategory,
+        selectedDifficulty,
+        noOfQuestions
       })
     );
   };
@@ -85,15 +94,15 @@ const QuizForm = props => {
       </h3>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        id={"myForm"}
-        name={"myForm"}
+        id="myForm"
+        name="myForm"
         encType="multipart/form-data"
       >
-        <label>1- Select a category</label> <br></br>
+        <label htmlFor="categories">1- Select a category</label> <br></br>
         <select
           data-testid = "category-test-quiz-form"
           style={{ width: "47%" }}
-          id={"categories"}
+          id="categories"
           name="category"
           ref={register({ required: true })}
         ></select>{" "}
@@ -113,6 +122,7 @@ const QuizForm = props => {
         <input
           style={{ width: "47%", margin: "0 auto" }}
           className="form-control"
+          data-testid = "no-of-questions"
           type="number"
           placeholder="Number of questions"
           name="noofquestions"
