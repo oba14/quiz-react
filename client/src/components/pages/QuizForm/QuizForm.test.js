@@ -6,6 +6,8 @@ import configureStore from 'redux-mock-store';
 import QuizForm from './QuizForm';
 import { getQuestions } from '../../../actions/questions';
 
+// USING REACT TEST RENDERER
+
 const mockStore = configureStore([]);
 describe('My Connected React-Redux Component', () => {
   let store;

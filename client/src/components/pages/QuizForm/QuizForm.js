@@ -135,9 +135,7 @@ const QuizForm = props => {
           className="btn btn-primary"
           type="submit"
           onClick= {onSubmit}
-        >
-          {" "}
-          Submit{" "}
+        >Submit Data
         </button>
       </form>
     </div>
