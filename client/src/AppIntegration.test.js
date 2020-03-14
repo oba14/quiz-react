@@ -1,6 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { render as rtlRender, fireEvent, wait } from "@testing-library/react";
+import {
+  render as rtlRender,
+  fireEvent,
+  wait,
+  queryByTestId
+} from "@testing-library/react";
 import App from "./App";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
@@ -20,13 +25,28 @@ const render = (ui, initialStore = {}, options = {}) => {
 };
 
 it("CLICK START QUIZ", async () => {
+  jest.setTimeout(10000);
   const dataDispatched = {
     noOfQuestions: "5",
     selectedCategory: "13",
     selectedDifficulty: "easy"
   };
-  axios.post.mockResolvedValue({ data: dataDispatched });
-  const { getByText, queryByText } = render(<App />);
+  axios.post.mockResolvedValue({
+    data: [
+      {
+        category: "Sports",
+        type: "multiple",
+        difficulty: "easy",
+        question:
+          "How%20many%20times%20did%20Martina%20Navratilova%20win%20the%20Wimbledon%20Singles%20Championship%3F",
+        correct_answer: "Nine",
+        incorrect_answers: [
+          { 0: "0 incorrect", 1: "1 incorrect", 3: "2 incorrect" }
+        ]
+      }
+    ]
+  });
+  const { getByText, queryByText, getByTestId, debug } = render(<App />);
 
   expect(queryByText(/Submit Data/)).not.toBeInTheDocument();
 
@@ -37,8 +57,12 @@ it("CLICK START QUIZ", async () => {
   ).toBeInTheDocument();
 
   fireEvent.click(getByText(/Submit Data/i));
+  debug();
+  //   setTimeout(() => {
+  //     expect(getByTestId("progress-check")).toBeInTheDocument();
+  //   }, [6000]);
   await wait(() => {
-    expect(queryByText(/Confirm and Continue/i)).toBeInTheDocument();
-    //expect(queryByText(/Save that fact/)).toBeInTheDocument();
+    expect(getByTestId("progress-check")).toBeInTheDocument();
+    //expect(queryByText(/Question 1 of 1/)).toBeInTheDocument();
   });
 });

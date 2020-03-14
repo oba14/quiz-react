@@ -5,7 +5,8 @@ import { getQuestions } from "../../../actions/questions";
 
 const QuizForm = props => {
   const dispatch = useDispatch();
-  const questions = useSelector(state => state.questions);
+  const questions = useSelector(state => state.questions.questions);
+  const entireState = useSelector(state => state.questions);
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
       category: "9",
@@ -15,7 +16,7 @@ const QuizForm = props => {
   });
 
   console.log("THIS IS QUIZ FORMMMMMMMMMMMM");
-  console.log("THIS IS QUIZ FORM STATEEEEEEE ", questions);
+  console.log("THIS IS QUIZ FORM STATEEEEEEE ", entireState);
 
   const categories = [
     { id: 9, name: "General Knowledge" },
@@ -58,7 +59,7 @@ const QuizForm = props => {
 
   const onSubmit = data => {
     const myForm = document.getElementById("myForm");
-    console.log("MY FORMMMM", data);
+    //console.log("MY FORMMMM", data);
     //console.log("Created FormData, " + [...myForm.keys()].length + " keys in data");
     // const formData = new FormData(myForm);
     // const selectedCategory = formData.get("category");
@@ -66,7 +67,7 @@ const QuizForm = props => {
     // const noOfQuestions = formData.get("noofquestions");
     const selectedCategory = "12"; // data.category;
     const selectedDifficulty = "easy"; //data.difficulty;
-    const noOfQuestions = "6"; //data.noofquestions;
+    const noOfQuestions = "1"; //data.noofquestions;
 
     dispatch(
       getQuestions({

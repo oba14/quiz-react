@@ -118,7 +118,7 @@ describe("Quiz button check", () => {
 
   test("Quiz button click event", async () => {
     const leftClick = { button: 0 };
-    store = mockStore(initialState);
+    store = mockStore({ questions: initialState });
     const { getByTestId, container, getByRole } = render(
       <Provider store={store}>
         <App />

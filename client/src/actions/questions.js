@@ -36,7 +36,7 @@ export const errorFetching = err => {
 
 export const getQuestions = data => {
   console.log("GET QUESTION ACTION BEING CALLED", data);
-  
+
   return async dispatch => {
     dispatch(isfetching());
     try {
@@ -57,7 +57,7 @@ export const getQuestions = data => {
           dispatch(errorFetching(error.message));
         });
     } catch (error) {
-      dispatch(errorFetching(error.message));
+      dispatch(errorFetching(`catch block error: ${error.message}`));
     }
   };
 };
