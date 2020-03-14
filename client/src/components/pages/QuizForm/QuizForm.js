@@ -58,15 +58,15 @@ const QuizForm = props => {
 
   const onSubmit = data => {
     const myForm = document.getElementById("myForm");
-    console.log('MY FORMMMM',data);
+    //console.log('MY FORMMMM',data);
     //console.log("Created FormData, " + [...myForm.keys()].length + " keys in data");
     // const formData = new FormData(myForm);
     // const selectedCategory = formData.get("category");
     // const selectedDifficulty = formData.get("difficulty");
     // const noOfQuestions = formData.get("noofquestions");
-    const selectedCategory = data.category;
-    const selectedDifficulty = data.difficulty;
-    const noOfQuestions = data.noofquestions;
+    const selectedCategory = '12';// data.category;
+    const selectedDifficulty = 'easy';//data.difficulty;
+    const noOfQuestions = '6';//data.noofquestions;
 
     dispatch(
       getQuestions({
@@ -78,7 +78,7 @@ const QuizForm = props => {
   };
 
   useEffect(() => {
-    addOptions();
+    //addOptions();
   });
 
   useEffect(() => {
@@ -134,6 +134,7 @@ const QuizForm = props => {
           data-testid="form-submit-btn"
           className="btn btn-primary"
           type="submit"
+          onClick= {onSubmit}
         >
           {" "}
           Submit{" "}
