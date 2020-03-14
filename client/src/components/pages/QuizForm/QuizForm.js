@@ -8,11 +8,11 @@ const QuizForm = props => {
   const questions = useSelector(state => state.questions);
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
-    category: '9',
-    difficulty: "easy",
-    noofquestions: 2
-  }
-});
+      category: "9",
+      difficulty: "easy",
+      noofquestions: 2
+    }
+  });
 
   console.log("THIS IS QUIZ FORMMMMMMMMMMMM");
   console.log("THIS IS QUIZ FORM STATEEEEEEE ", questions);
@@ -58,15 +58,15 @@ const QuizForm = props => {
 
   const onSubmit = data => {
     const myForm = document.getElementById("myForm");
-    //console.log('MY FORMMMM',data);
+    console.log("MY FORMMMM", data);
     //console.log("Created FormData, " + [...myForm.keys()].length + " keys in data");
     // const formData = new FormData(myForm);
     // const selectedCategory = formData.get("category");
     // const selectedDifficulty = formData.get("difficulty");
     // const noOfQuestions = formData.get("noofquestions");
-    const selectedCategory = '12';// data.category;
-    const selectedDifficulty = 'easy';//data.difficulty;
-    const noOfQuestions = '6';//data.noofquestions;
+    const selectedCategory = "12"; // data.category;
+    const selectedDifficulty = "easy"; //data.difficulty;
+    const noOfQuestions = "6"; //data.noofquestions;
 
     dispatch(
       getQuestions({
@@ -100,7 +100,7 @@ const QuizForm = props => {
       >
         <label htmlFor="categories">1- Select a category</label> <br></br>
         <select
-          data-testid = "category-test-quiz-form"
+          data-testid="category-test-quiz-form"
           style={{ width: "47%" }}
           id="categories"
           name="category"
@@ -122,7 +122,7 @@ const QuizForm = props => {
         <input
           style={{ width: "47%", margin: "0 auto" }}
           className="form-control"
-          data-testid = "no-of-questions"
+          data-testid="no-of-questions"
           type="number"
           placeholder="Number of questions"
           name="noofquestions"
@@ -134,8 +134,9 @@ const QuizForm = props => {
           data-testid="form-submit-btn"
           className="btn btn-primary"
           type="submit"
-          onClick= {onSubmit}
-        >Submit Data
+          onClick={onSubmit}
+        >
+          Submit Data
         </button>
       </form>
     </div>
