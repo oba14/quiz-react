@@ -4,7 +4,8 @@ import {
   render as rtlRender,
   fireEvent,
   wait,
-  queryByTestId
+  cleanup,
+  waitForElement
 } from "@testing-library/react";
 import App from "./App";
 import { createStore, applyMiddleware } from "redux";
@@ -23,9 +24,9 @@ const render = (ui, initialStore = {}, options = {}) => {
 
   return rtlRender(ui, { wrapper: Providers, ...options });
 };
-
+afterEach(cleanup);
 it("CLICK START QUIZ", async () => {
-  jest.setTimeout(10000);
+  jest.setTimeout(30000);
   const dataDispatched = {
     noOfQuestions: "5",
     selectedCategory: "13",
@@ -56,12 +57,9 @@ it("CLICK START QUIZ", async () => {
     queryByText(/Select quiz category and difficult level/)
   ).toBeInTheDocument();
 
-  fireEvent.click(getByText(/Submit Data/i));
+  fireEvent.click(getByTestId("form-submit-btn"));
   debug();
-  //   setTimeout(() => {
-  //     expect(getByTestId("progress-check")).toBeInTheDocument();
-  //   }, [6000]);
-  await wait(() => {
+  await waitForElement(() => {
     expect(getByTestId("progress-check")).toBeInTheDocument();
     //expect(queryByText(/Question 1 of 1/)).toBeInTheDocument();
   });

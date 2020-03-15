@@ -40,7 +40,7 @@ export const getQuestions = data => {
   return async dispatch => {
     dispatch(isfetching());
     try {
-      await axios({
+      return await axios({
         method: "post",
         url: url,
         data: {
