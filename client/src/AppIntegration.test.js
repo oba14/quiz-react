@@ -49,25 +49,39 @@ it("CLICK START QUIZ", async () => {
   // });
   const { getByText, queryByText, getByTestId, debug } = render(<App />);
 
+  // When app loads Submit data button shouldnt be displayed
   expect(queryByText(/Submit Data/)).not.toBeInTheDocument();
-  debug();
-  fireEvent.click(getByText(/Start the Quiz/i));
 
+  // Click Start the Quiz Button
+  fireEvent.click(getByText(/Start the Quiz/i));
+  // Check if quiz form page is loaded
   expect(
     queryByText(/Select quiz category and difficult level/)
   ).toBeInTheDocument();
 
+  // Submit the form by clicking Submit Data button
   fireEvent.click(getByTestId("form-submit-btn"));
-  debug();
+
+  // Wait for the questions to be loaded
   await wait(() => {
     expect(getByTestId("progress-check")).toBeInTheDocument();
     expect(getByText(/Confirm and Continue/i)).toBeInTheDocument();
   });
+
+  // Clicking Confirm and continue button without selecting an answer should give an error
   fireEvent.click(getByText(/Confirm and Continue/i));
   expect(getByText(/Please select an option/i)).toBeInTheDocument();
+
+  // Select an answer
   fireEvent.click(getByTestId("answer-btn-testid-1"));
-  debug();
+  // Submit the answer
   fireEvent.click(getByText(/Confirm and Continue/i));
+  // Expect the result page to be shown
   expect(getByText(/Results/i)).toBeInTheDocument();
   debug();
+
+  // Quit the app
+  fireEvent.click(getByText(/Quit/i));
+  // Expect the app to Go to Home page
+  expect(getByText(/WELCOME/i)).toBeInTheDocument();
 });
