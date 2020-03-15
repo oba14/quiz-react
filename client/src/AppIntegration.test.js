@@ -63,4 +63,11 @@ it("CLICK START QUIZ", async () => {
     expect(getByTestId("progress-check")).toBeInTheDocument();
     expect(getByText(/Confirm and Continue/i)).toBeInTheDocument();
   });
+  fireEvent.click(getByText(/Confirm and Continue/i));
+  expect(getByText(/Please select an option/i)).toBeInTheDocument();
+  fireEvent.click(getByTestId("answer-btn-testid-1"));
+  debug();
+  fireEvent.click(getByText(/Confirm and Continue/i));
+  expect(getByText(/Results/i)).toBeInTheDocument();
+  debug();
 });

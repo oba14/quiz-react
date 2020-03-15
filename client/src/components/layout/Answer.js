@@ -1,9 +1,9 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { SET_CURRENT_ANSWER, SET_ERROR } from '../../actions/types';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { SET_CURRENT_ANSWER, SET_ERROR } from "../../actions/types";
 
-function Answer({ answer, selected }) {
-  const classes = [ 'answer' ];
+function Answer({ answer, selected, index }) {
+  const classes = ["answer"];
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -13,15 +13,19 @@ function Answer({ answer, selected }) {
     });
     dispatch({
       type: SET_ERROR,
-      error: ''
+      error: ""
     });
   };
 
   if (selected) {
-    classes.push('selected');
+    classes.push("selected");
   }
   return (
-    <button className={ classes.join(' ') } onClick={ handleClick }>
+    <button
+      data-testid={`answer-btn-testid-${index}`}
+      className={classes.join(" ")}
+      onClick={handleClick}
+    >
       {answer}
     </button>
   );

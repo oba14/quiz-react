@@ -41,7 +41,11 @@ const Quiz = props => {
       return;
     }
 
-    return <div className="error">{error}</div>;
+    return (
+      <div data-testid="error-select-ans" className="error">
+        {error}
+      </div>
+    );
   };
 
   const renderResultMark = (question, answer) => {
