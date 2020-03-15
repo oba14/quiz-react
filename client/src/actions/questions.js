@@ -50,6 +50,7 @@ export const getQuestions = data => {
         }
       })
         .then(res => {
+          console.log("INSIDE THENNNNN", res);
           dispatch(questions(res.data.results));
         })
         .catch(error => {

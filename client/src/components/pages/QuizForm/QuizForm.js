@@ -67,7 +67,7 @@ const QuizForm = props => {
     // const noOfQuestions = formData.get("noofquestions");
     const selectedCategory = "12"; // data.category;
     const selectedDifficulty = "easy"; //data.difficulty;
-    const noOfQuestions = "1"; //data.noofquestions;
+    const noOfQuestions = "2"; //data.noofquestions;
 
     dispatch(
       getQuestions({
