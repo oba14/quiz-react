@@ -12,7 +12,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/rootReducer";
 import "@testing-library/jest-dom/extend-expect";
-import axios from "axios";
+//import axios from "axios";
 
 //jest.mock("axios");
 
