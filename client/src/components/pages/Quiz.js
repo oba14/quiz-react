@@ -103,14 +103,6 @@ const Quiz = props => {
     dispatch(setShowResults());
   };
 
-  // const answerStatus = e => {
-  //   if (e.target.value === questions.correct_answer) {
-  //     setAnswerColor("green");
-  //   } else {
-  //     setAnswerColor("red");
-  //   }
-  // };
-
   if (questions.length > 0) {
     question = questions[currentQuestion];
   }
