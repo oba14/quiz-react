@@ -8,7 +8,8 @@ import {
   SET_ERROR,
   SET_SHOW_RESULTS,
   RESET_QUIZ,
-  QUIT
+  QUIT,
+  SET_USER_NAME
 } from "../actions/types";
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
   currentQuestion: 0,
   currentAnswer: "",
   answers: [],
-  showResults: false
+  showResults: false,
+  user_name: ""
 };
 
 const questionsReducer = (state = initialState, action) => {
@@ -74,6 +76,11 @@ const questionsReducer = (state = initialState, action) => {
         answers: [],
         showResults: false
       };
+    case SET_USER_NAME:
+      return {
+        ...state,
+        user_name: action.payload
+      }
     default:
       return state;
   }

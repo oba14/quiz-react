@@ -9,7 +9,8 @@ import {
   SET_CURRENT_QUESTION,
   SET_SHOW_RESULTS,
   QUIT,
-  RESET_QUIZ
+  RESET_QUIZ,
+  SET_USER_NAME
 } from "./types";
 
 const url = "http://localhost:5000/quiz";
@@ -21,6 +22,12 @@ export const questions = data => {
   };
 };
 
+export const userName = data => {
+  return {
+    type: SET_USER_NAME,
+    payload: data
+  }
+}
 export const isfetching = () => {
   return {
     type: IS_FETCHING

@@ -8,3 +8,4 @@ export const SET_SHOW_RESULTS = 'SET_SHOW_RESULTS';
 export const SET_ANSWERS = 'SET_ANSWERS';
 export const RESET_QUIZ = 'RESET_QUIZ';
 export const QUIT = 'QUIT';
+export const SET_USER_NAME = 'SET_USER_NAME'
